@@ -1,7 +1,0 @@
-# CAREFUL! This file is pulled from the boilerplate each time you run `yarn latest` or `yarn bin:patch`.
-#If updates are required for this file, please provide the update within the boilerplate so that all repositories built on the boilerplate will receive updates.
-node_modules
-build
-lib
-.eslintrc.js
-vite.config.ts
