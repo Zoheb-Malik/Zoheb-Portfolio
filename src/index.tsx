@@ -10,7 +10,7 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      <Router basename='/'>
+      <Router basename='/Zoheb-Portfolio'>
         <App />
       </Router>
     </React.StrictMode>,
