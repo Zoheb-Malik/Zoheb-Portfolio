@@ -7,7 +7,16 @@
     <title>Zoheb Malik - Portfolio</title>
   </head>
   <body>
-    <script type="module" src="/src/index.tsx"></script>
     <article id="root"></article>
+    <script type="module" src="/src/index.tsx" defer></script>
+    <script defer>
+      (() => {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </body>
 </html>
