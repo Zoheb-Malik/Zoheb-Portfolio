@@ -10,7 +10,7 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      <Router hashType='noslash'>
+      <Router hashType="slash">
         <App />
       </Router>
     </React.StrictMode>,
