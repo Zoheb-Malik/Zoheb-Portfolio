@@ -1,12 +1,12 @@
 @media (max-width: 768px) { // Mobile
-  &__section, &__section--introduction {
+  &__section--content, &__section--content-introduction {
     padding: 0 2.5pc;
     user-select: none;
   }
 }
 
 @media (min-width: 618px) and (max-width: 1024px) { // Tablet
-  &__section, &__section--introduction {
+  &__section--content, &__section--content-introduction {
     padding: 0 7.5pc;
     user-select: none;
   }

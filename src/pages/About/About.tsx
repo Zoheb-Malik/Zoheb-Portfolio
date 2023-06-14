@@ -114,9 +114,9 @@ export default function About() {
 
   return (
     <PageTemplate header="About Me ツ">
-      <section>
-        <h2 className="remove--margin-top">Personal Details 📋</h2>
       <section className="page__section">
+        <h2 className="remove--margin-top">Personal Details 📋</h2>
+      <section className="page__section--content">
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
@@ -128,9 +128,9 @@ export default function About() {
         </div>
       </section>
       </section>
-      <section>
+      <section className="page__section">
         <h2>My Education 🎓</h2>
-        <section className="page__section">
+        <section className="page__section--content">
           <div>
             <strong>University:</strong> {degree.university}
           </div>
@@ -145,13 +145,13 @@ export default function About() {
           </div>
         </section>
       </section>
-      <section>
+      <section className="page__section">
         <h2>Work Experience 💻</h2>
-        <section className="page__section">{renderWorkExperience()}</section>
+        <section className="page__section--content">{renderWorkExperience()}</section>
       </section>
-      <section>
+      <section className="page__section">
         <h2>Programming Languages & Skills ✒️</h2>
-        <section className="page__section skills--container remove--padding-left-right">
+        <section className="page__section--content skills--container remove--padding-left-right">
           <div className="skills">
             <ul>{renderSkills()}</ul>
           </div>

@@ -24,6 +24,10 @@ body {
       height: calc(90vh - 100px);
       padding: 28px 0;
       overflow-y: auto;
+
+      &__section {
+        padding: 0 10px;
+      }
       
       &__header {
         position: sticky;
@@ -32,11 +36,11 @@ body {
         background-color: rgb(46, 45, 47);
       }
     
-      &__section, &__section--introduction {
+      &__section--content, &__section--content-introduction {
         padding: 0 20pc;
         line-height: 1.35;
     
-        &--introduction {
+        &-introduction {
           text-align: left;
         }
       }
@@ -49,8 +53,10 @@ body {
       position: sticky;
       display: flex;
       background-color: #333;
-      justify-content: space-between;
+      top: 0;
       padding: 14px;
+      justify-content: space-between;
+      z-index: 100;
       .tab {
         color: #FFF;
         padding: 16px;
