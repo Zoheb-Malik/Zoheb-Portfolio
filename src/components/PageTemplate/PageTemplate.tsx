@@ -5,7 +5,7 @@ export default function PageTemplate({ header, children }: IPageTemplate) {
     <>
       {header && (
         <header>
-          <h1 className="page--header">{header}</h1>
+          <h1 className="page__header">{header}</h1>
         </header>
       )}
       <article className="page">{children}</article>

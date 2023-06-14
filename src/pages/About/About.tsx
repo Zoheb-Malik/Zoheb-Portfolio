@@ -12,7 +12,7 @@ const degree: IDegree = {
   university: 'Manchester Metropolitan University',
   qualification: 'Bachelor of Science - BSc (Hons)',
   field: 'Computer Software Engineering',
-  grade: 'First Class',
+  grade: 'First Class Honours',
 };
 
 const JavaScript = [
@@ -116,7 +116,7 @@ export default function About() {
     <PageTemplate header="About Me ツ">
       <section>
         <h2 className="remove--margin-top">Personal Details 📋</h2>
-      <section className="page--section">
+      <section className="page__section">
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
@@ -130,7 +130,7 @@ export default function About() {
       </section>
       <section>
         <h2>My Education 🎓</h2>
-        <section className="page--section">
+        <section className="page__section">
           <div>
             <strong>University:</strong> {degree.university}
           </div>
@@ -147,11 +147,11 @@ export default function About() {
       </section>
       <section>
         <h2>Work Experience 💻</h2>
-        <section className="page--section">{renderWorkExperience()}</section>
+        <section className="page__section">{renderWorkExperience()}</section>
       </section>
       <section>
         <h2>Programming Languages & Skills ✒️</h2>
-        <section className="page--section skills--container remove--margin">
+        <section className="page__section skills--container remove--padding-left-right">
           <div className="skills">
             <ul>{renderSkills()}</ul>
           </div>

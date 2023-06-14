@@ -1,6 +1,8 @@
-@import './typography';
+@import './imports/_typography';
 
 body {
+  height: fit-content;
+  width: 100%;
   margin: 0;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.87);
@@ -22,19 +24,29 @@ body {
       height: calc(90vh - 100px);
       padding: 28px 0;
       overflow-y: auto;
-      &--header {
+      
+      &__header {
+        position: sticky;
         margin: 0 !important;
         padding: 20px;
         background-color: rgb(46, 45, 47);
       }
-      &--section {
-        margin-left: 250px;
-        margin-right: 250px;
+    
+      &__section, &__section--introduction {
+        padding: 0 20pc;
         line-height: 1.35;
+    
+        &--introduction {
+          text-align: left;
+        }
       }
+    
+      @import './imports/_mediaQueries';
+
     }
   
     .site-nav {
+      position: sticky;
       display: flex;
       background-color: #333;
       justify-content: space-between;
@@ -43,15 +55,16 @@ body {
         color: #FFF;
         padding: 16px;
         font-weight: 500;
-        cursor: pointer;
         &:hover {
           background-color: rgba(0, 0, 0, 0.075);
+          cursor: pointer;
         }
         &:active {
           background-color: rgba(0, 0, 0, 0.15);
         }
         &.activated {
           background-color: grey;
+          pointer-events: none;
         }
       }
     }
@@ -71,7 +84,7 @@ body {
       }
     }
 
-    @import './utilities';
+    @import './imports/utilities';
 
   }
 }
