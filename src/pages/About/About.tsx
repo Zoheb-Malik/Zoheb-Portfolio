@@ -1,7 +1,9 @@
 import IDegree from './IDegree';
 import IWorkExperience from './IWorkExperience';
-import './../../styles/pages/About.scss';
 import PageTemplate from '../../components/PageTemplate/PageTemplate';
+import PageContent from '../../components/PageContent/PageContent';
+import checkBirthday from '../../utils/checkBirthday';
+import './../../styles/pages/About.scss';
 
 const forename = 'Zoheb';
 const surname = 'Malik';
@@ -114,49 +116,39 @@ export default function About() {
 
   return (
     <PageTemplate header="About Me ツ">
-      <section className="page__section">
-        <h2 className="remove--margin-top">Personal Details 📋</h2>
-      <section className="page__section--content">
+      <PageContent title="Personal Details 📋" removeMarginTop>
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
         <div>
-          <strong>Date of Birth:</strong> {dateOfBirth.toLocaleDateString()}
+          <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()} {checkBirthday(dateOfBirth)}
         </div>
         <div>
           <strong>Location:</strong> {location}
         </div>
-      </section>
-      </section>
-      <section className="page__section">
-        <h2>My Education 🎓</h2>
-        <section className="page__section--content">
-          <div>
-            <strong>University:</strong> {degree.university}
-          </div>
-          <div>
-            <strong>Degree:</strong> {degree.qualification}
-          </div>
-          <div>
-            <strong>Field of Study:</strong> {degree.field}
-          </div>
-          <div>
-            <strong>Grade:</strong> {degree.grade}
-          </div>
-        </section>
-      </section>
-      <section className="page__section">
-        <h2>Work Experience 💻</h2>
-        <section className="page__section--content">{renderWorkExperience()}</section>
-      </section>
-      <section className="page__section">
-        <h2>Programming Languages & Skills ✒️</h2>
-        <section className="page__section--content skills--container remove--padding-left-right">
-          <div className="skills">
-            <ul>{renderSkills()}</ul>
-          </div>
-        </section>
-      </section>
+      </PageContent>
+      <PageContent title="My Education 🎓">
+        <div>
+          <strong>University:</strong> {degree.university}
+        </div>
+        <div>
+          <strong>Degree:</strong> {degree.qualification}
+        </div>
+        <div>
+          <strong>Field of Study:</strong> {degree.field}
+        </div>
+        <div>
+          <strong>Grade:</strong> {degree.grade}
+        </div>
+      </PageContent>
+      <PageContent title="Work Experience 💻">
+        {renderWorkExperience()}
+      </PageContent>
+      <PageContent title="Programming Languages & Skills ✒️" className="skills--container remove--padding-left-right">
+        <div className="skills">
+          <ul>{renderSkills()}</ul>
+        </div>
+      </PageContent>
     </PageTemplate>
   );
 }

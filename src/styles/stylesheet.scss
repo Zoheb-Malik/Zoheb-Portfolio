@@ -8,7 +8,7 @@ body {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   text-align: center;
-  overflow-y: hidden;
+  overflow: hidden;
 
   &:root, #root {
     a {
@@ -25,26 +25,19 @@ body {
       padding: 28px 0;
       overflow-y: auto;
 
-      &__section {
-        padding: 0 10px;
-      }
-      
       &__header {
-        position: sticky;
         margin: 0 !important;
         padding: 20px;
         background-color: rgb(46, 45, 47);
       }
-    
-      &__section--content, &__section--content-introduction {
-        padding: 0 20pc;
-        line-height: 1.35;
-    
-        &-introduction {
-          text-align: left;
+
+      &__section {
+        padding: 0 10px;
+        &--content {
+          line-height: 1.35;
         }
       }
-    
+        
       @import './imports/_mediaQueries';
 
     }
@@ -57,6 +50,7 @@ body {
       padding: 14px;
       justify-content: space-between;
       z-index: 100;
+      user-select: none;
       .tab {
         color: #FFF;
         padding: 16px;
@@ -90,7 +84,7 @@ body {
       }
     }
 
-    @import './imports/utilities';
+    @import './imports/_utilities';
 
   }
 }

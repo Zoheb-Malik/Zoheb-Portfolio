@@ -1,13 +1,25 @@
-@media (max-width: 768px) { // Mobile
-  &__section--content, &__section--content-introduction {
+@media (max-width: 618px) { // Mobile
+  &__section--content {
     padding: 0 2.5pc;
     user-select: none;
   }
 }
 
-@media (min-width: 618px) and (max-width: 1024px) { // Tablet
-  &__section--content, &__section--content-introduction {
-    padding: 0 7.5pc;
+@media (min-width: 618px) and (max-width: 768px) { // Tablet
+  &__section--content {
+    padding: 0 5pc;
     user-select: none;
+  }
+}
+
+@media (min-width: 768px) { // Laptop
+  &__section--content {
+    padding: 0 7.5pc;
+  }
+}
+
+@media (min-width: 1024px) { // Desktop
+  &__section--content {
+    padding: 0 10pc;
   }
 }
