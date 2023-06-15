@@ -1,14 +1,14 @@
-import IPageTemplate from "./IPageTemplate";
+import IPageTemplate from './IPageTemplate';
 
 export default function PageTemplate({ header, children }: IPageTemplate) {
   return (
     <>
       {header && (
         <header>
-          <h1 className="page__header">{header}</h1>
+          <h1 className='page__header'>{header}</h1>
         </header>
       )}
-      <article className="page">{children}</article>
+      <article className='page'>{children}</article>
     </>
   );
 }

@@ -1,17 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 export default function SiteNav() {
   return (
-    <nav className="site-nav">
+    <nav className='site-nav'>
       <div>
-        <NavLink exact to="/" className="tab" activeClassName="activated">
+        <NavLink exact to='/' className='tab' activeClassName='activated'>
           Home
         </NavLink>
-        <NavLink to="/about" className="tab" activeClassName="activated">
+        <NavLink to='/about' className='tab' activeClassName='activated'>
           About
         </NavLink>
       </div>
     </nav>
   );
 }
-

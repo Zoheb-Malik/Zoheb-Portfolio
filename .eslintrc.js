@@ -1,9 +1,5 @@
 import { path } from 'path';
 
-const {
-  alias,
-  eslint: { rules },
-} = require('./.boilerplate.config');
 const aliasMap = Object.keys(alias).map((a) => [a, alias[a]]);
 
 module.exports = {
