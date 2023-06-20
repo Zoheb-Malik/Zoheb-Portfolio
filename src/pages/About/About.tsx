@@ -115,7 +115,7 @@ export default function About() {
   }
 
   return (
-    <PageTemplate header='About Me ツ'>
+    <PageTemplate header='About Me ツ' displayProfile>
       <PageContent title='Personal Details 📋' removeMarginTop>
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
@@ -145,7 +145,7 @@ export default function About() {
       <PageContent title='Work Experience 💻'>{renderWorkExperience()}</PageContent>
       <PageContent
         title='Programming Languages & Skills ✒️'
-        className='skills--container remove--padding-left-right'
+        className='skills--container padding--remove-left-right'
       >
         <div className='skills'>
           <ul>{renderSkills()}</ul>
