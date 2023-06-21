@@ -25,7 +25,7 @@ export default function PageContent({ title, className = '', removeMarginTop, ch
   return (
     <section className='page__section'>
       {/* Find the hidden easter egg! (#1) */}
-      <div className='aster-egg--sparkle' onClick={sparkleEasterEgg}>
+      <div className='easter-egg--sparkle' onClick={sparkleEasterEgg}>
         <h2 className={removeMarginTop ? 'margin--remove-top' : ''}>{title}</h2>
       </div>
       <section className={`page__section--content ${className}`.trim()}>
