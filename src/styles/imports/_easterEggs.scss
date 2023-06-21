@@ -1,7 +1,9 @@
-.js-easter-egg {
-  h2 {
-    &:hover {
-      cursor: pointer;
+.easter-egg {
+  &--sparkle {
+    h2 {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
