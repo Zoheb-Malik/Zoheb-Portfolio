@@ -17,6 +17,10 @@ body {
   overflow: hidden;
 
   &:root, #root {
+    h2 {
+      user-select: none;
+    }
+    
     a {
       color: #FFF;
       text-decoration: inherit;
@@ -83,7 +87,6 @@ body {
         border: 2px solid white;
       }
     }
-  
   
     ::-webkit-scrollbar {
       width: 8px;
