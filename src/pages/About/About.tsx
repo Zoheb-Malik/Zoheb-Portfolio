@@ -26,48 +26,45 @@ const JavaScript = [
   'Vue.js',
 ];
 
-const CSS = ['CSS', 'SCSS', 'Sass'];
+const CSS = 'CSS (SCSS, Sass)';
 
-const SQL = ['MySQL', 'NoSQL'];
+const SQL = 'SQL (MySQL, NoSQL)';
 
 const programmingLanguages = [
-  'HTML',
   ...JavaScript,
-  ...CSS,
+  CSS,
   'PHP',
+  'HTML',
   'Python (Programming Language)',
-  ...SQL,
+  SQL,
 ];
 
-const Git = ['Git', 'GitHub'];
+const Git = 'Git (Git Bash, GitHub, GitHub Desktop)';
 
 const AI = ['Artificial Intelligence (AI)', 'Prompt Engineering', 'Large Language Models (LLM)'];
 
 const personalSkills = [
-  'Creative Problem Solving',
   'Leadership',
   'Innovation',
   'Resourcefulness',
+  'Creative Problem Solving',
   'Maintaining Content Management Systems (CMS)',
 ];
 
-const skills = [...programmingLanguages, ...Git, ...AI, ...personalSkills];
+const skills = [...programmingLanguages, Git, ...AI, ...personalSkills];
 
 const skillColors: { [key: string]: string } = {
-  HTML: 'dodgerblue',
   'JavaScript (VanillaJS, JQuery)': 'yellow',
   'Node.js': 'lime',
   'React.js': 'cornflowerblue',
   TypeScript: 'lightblue',
   AngularJS: 'lightcoral',
   'Vue.js': 'cadetblue',
-  CSS: 'pink',
-  SCSS: 'pink',
-  Sass: 'pink',
+  'CSS (SCSS, Sass)': 'pink',
   PHP: 'red',
+  HTML: 'dodgerblue',
   'Python (Programming Language)': 'lightblue',
-  Git: 'lightgrey',
-  GitHub: 'lightgrey',
+  'Git (Git Bash, GitHub, GitHub Desktop)': 'lightgrey',
   'Artificial Intelligence (AI)': 'goldenrod',
   'Prompt Engineering': 'goldenrod',
   'Large Language Models (LLM)': 'goldenrod',
@@ -144,7 +141,7 @@ export default function About() {
       </PageContent>
       <PageContent title='Work Experience 💻'>{renderWorkExperience()}</PageContent>
       <PageContent
-        title='Programming Languages & Skills ✒️'
+        title='Programming Languages, Frameworks & Skills ✒️'
         className='skills--container padding--remove-left-right'
       >
         <div className='skills'>
