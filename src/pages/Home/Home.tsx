@@ -11,8 +11,8 @@ export default function Home() {
             a hobbyist coder and currently have 1.5 years of industry experience.
           </p>
           <p>
-            Specialising particularly in web development, I have acquired skills in JavaScript,
-            including frontend & backend frameworks such as ReactJS, TypeScript, NodeJS, AngularJS, and VueJS.
+            Specialising particularly in web development, I have acquired skills in JavaScript/VanillaJS,
+            which includes frontend & backend frameworks such as ReactJS, TypeScript, NodeJS, AngularJS, VueJS, and JQuery.
             Additionally, I am proficient in other languages and skills such as CSS (SCSS/Sass), PHP, HTML, SQL, and Python.
             I also possess a solid understanding of Version Control (Git, Git BASH, GitHub, GitHub Pages, GitHub Workflows),
             Cloudflare, and have recently developed a strong interest in Artificial Intelligence (AI),
