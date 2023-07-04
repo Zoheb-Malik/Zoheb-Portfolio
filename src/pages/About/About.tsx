@@ -8,7 +8,7 @@ import './../../styles/pages/About.scss';
 const forename = 'Zoheb';
 const surname = 'Malik';
 const dateOfBirth: Date = new Date(1999, 0, 13);
-const location = 'England, United Kingdom';
+const location = 'Doncaster, England, United Kingdom';
 
 const degree: IDegree = {
   university: 'Manchester Metropolitan University',
@@ -79,7 +79,7 @@ const workExperience: IWorkExperience[] = [
   },
   {
     company: 'Vertu Motors plc',
-    jobTitle: 'Front-End Developer',
+    jobTitle: 'Frontend Developer',
     duration: 'August 14th, 2022 - Present',
   },
 ];
