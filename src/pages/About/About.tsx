@@ -118,8 +118,7 @@ export default function About() {
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
         <div>
-          <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()}{' '}
-          {checkBirthday(dateOfBirth)}
+          <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()} {checkBirthday(dateOfBirth)}
         </div>
         <div>
           <strong>Location:</strong> {location}
