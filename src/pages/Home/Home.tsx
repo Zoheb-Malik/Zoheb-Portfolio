@@ -7,15 +7,16 @@ export default function Home() {
       <PageContent title='Brief Summary 📖' removeMarginTop>
         <div className='shift--text-left'>
           <p className='margin--remove-top'>
-            I am a passionate and innovative full-stack software engineer with 1.5 years of experience
-            in the industry and over 10 years of experience as a hobbyist coder.
+            I am a passionate and innovative developer with over 10 years of interest as
+            a hobbyist coder and currently have 1.5 years of industry experience.
           </p>
           <p>
-            Particularly specialising in front-end development, I am skilled in JavaScript
-            (ReactJS, NodeJS, TypeScript, AngularJS, VueJS), HTML5, CSS3 (SASS/SCSS),
-            and have gained proficiency in some backend technologies.
-            I also possess a solid understanding of Version Control (GitHub), Cloudflare, PHP, SQL (MySQL, NoSQL),
-            and have recently taken a large interest in Artificial Intelligence (AI).
+            Specialising particularly in web development, I have acquired skills in JavaScript,
+            including frontend & backend frameworks such as ReactJS, TypeScript, NodeJS, AngularJS, and VueJS.
+            Additionally, I am proficient in other languages and skills such as CSS (SCSS/Sass), PHP, HTML, SQL, and Python.
+            I also possess a solid understanding of Version Control (Git, Git BASH, GitHub, GitHub Pages, GitHub Workflows),
+            Cloudflare, and have recently developed a strong interest in Artificial Intelligence (AI),
+            Prompt Engineering and Large Language Models (LLM's).
           </p>
           <p>
             I have gained valuable experience as a front-end developer at Vertu Motors plc, where I

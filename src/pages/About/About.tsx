@@ -18,12 +18,13 @@ const degree: IDegree = {
 };
 
 const JavaScript = [
-  'JavaScript (VanillaJS, JQuery)',
+  'JavaScript/VanillaJS',
   'Node.js',
   'React.js',
   'TypeScript',
   'AngularJS',
   'Vue.js',
+  'JQuery'
 ];
 
 const CSS = 'CSS (SCSS, Sass)';
@@ -39,7 +40,7 @@ const programmingLanguages = [
   SQL,
 ];
 
-const Git = 'Git (Git Bash, GitHub, GitHub Desktop)';
+const Git = 'Git (Git BASH, GitHub, GitHub Desktop, GitHub Pages, GitHub Workflows)';
 
 const AI = ['Artificial Intelligence (AI)', 'Prompt Engineering', 'Large Language Models (LLM)'];
 
@@ -54,7 +55,7 @@ const personalSkills = [
 const skills = [...programmingLanguages, Git, ...AI, ...personalSkills];
 
 const skillColors: { [key: string]: string } = {
-  'JavaScript (VanillaJS, JQuery)': 'yellow',
+  'JavaScript/VanillaJS': 'yellow',
   'Node.js': 'lime',
   'React.js': 'cornflowerblue',
   TypeScript: 'lightblue',
@@ -64,7 +65,7 @@ const skillColors: { [key: string]: string } = {
   PHP: 'red',
   HTML: 'dodgerblue',
   'Python (Programming Language)': 'lightblue',
-  'Git (Git Bash, GitHub, GitHub Desktop)': 'lightgrey',
+  'Git (Git BASH, GitHub, GitHub Desktop, GitHub Pages, GitHub Workflows)': 'lightgrey',
   'Artificial Intelligence (AI)': 'goldenrod',
   'Prompt Engineering': 'goldenrod',
   'Large Language Models (LLM)': 'goldenrod',
@@ -117,6 +118,7 @@ export default function About() {
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
+        {/* Find the hidden easter egg! (#1.5) */}
         <div>
           <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()} {checkBirthday(dateOfBirth)}
         </div>
