@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import IPageContent from './IPageContent';
 
-export default function PageContent({ title, className = '', removeMarginTop, children }: IPageContent) {
+export default function PageContent({
+  title,
+  className = '',
+  removeMarginTop,
+  children,
+}: IPageContent) {
   const [clickCount, setClickCount] = useState(0);
 
   function sparkleEasterEgg({ currentTarget }: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -23,14 +28,12 @@ export default function PageContent({ title, className = '', removeMarginTop, ch
   }
 
   return (
-    <section className='page__section'>
+    <section className="page__section">
       {/* Find the hidden easter egg! (#1) */}
-      <div className='easter-egg--sparkle' onClick={sparkleEasterEgg}>
+      <div className="easter-egg--sparkle" onClick={sparkleEasterEgg}>
         <h2 className={removeMarginTop ? 'margin--remove-top' : ''}>{title}</h2>
       </div>
-      <section className={`page__section--content ${className}`.trim()}>
-        {children}
-      </section>
+      <section className={`page__section--content ${className}`.trim()}>{children}</section>
     </section>
   );
 }

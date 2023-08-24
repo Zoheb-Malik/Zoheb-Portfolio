@@ -24,7 +24,7 @@ const JavaScript = [
   'TypeScript',
   'AngularJS',
   'Vue.js',
-  'JQuery'
+  'JQuery',
 ];
 
 const CSS = 'CSS (SCSS, Sass)';
@@ -113,20 +113,21 @@ export default function About() {
   }
 
   return (
-    <PageTemplate header='About Me ツ' displayProfile>
-      <PageContent title='Personal Details 📋' removeMarginTop>
+    <PageTemplate header="About Me ツ" displayProfile>
+      <PageContent title="Personal Details 📋" removeMarginTop>
         <div>
           <strong>Name:</strong> {`${forename} ${surname}`}
         </div>
         {/* Find the hidden easter egg! (#1.5) */}
         <div>
-          <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()} {checkBirthday(dateOfBirth)}
+          <strong>Birthdate:</strong> {dateOfBirth.toLocaleDateString()}{' '}
+          {checkBirthday(dateOfBirth)}
         </div>
         <div>
           <strong>Location:</strong> {location}
         </div>
       </PageContent>
-      <PageContent title='My Education 🎓'>
+      <PageContent title="My Education 🎓">
         <div>
           <strong>University:</strong> {degree.university}
         </div>
@@ -140,12 +141,12 @@ export default function About() {
           <strong>Grade:</strong> {degree.grade}
         </div>
       </PageContent>
-      <PageContent title='Work Experience 💻'>{renderWorkExperience()}</PageContent>
+      <PageContent title="Work Experience 💻">{renderWorkExperience()}</PageContent>
       <PageContent
-        title='Programming Languages, Frameworks & Skills ✒️'
-        className='skills--container padding--remove-left-right'
+        title="Programming Languages, Frameworks & Skills ✒️"
+        className="skills--container padding--remove-left-right"
       >
-        <div className='skills'>
+        <div className="skills">
           <ul>{renderSkills()}</ul>
         </div>
       </PageContent>

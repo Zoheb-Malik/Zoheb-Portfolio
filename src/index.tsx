@@ -14,6 +14,6 @@ if (rootElement) {
         <App />
       </Router>
     </React.StrictMode>,
-    rootElement
+    rootElement,
   );
 }

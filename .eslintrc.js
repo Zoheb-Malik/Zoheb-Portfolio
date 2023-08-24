@@ -5,8 +5,12 @@ const aliasMap = Object.keys(alias).map((a) => [a, alias[a]]);
 module.exports = {
   root: true,
   plugins: ['@typescript-eslint', 'import'],
-  extends: ['airbnb-typescript-prettier', 'plugin:import/typescript', 'plugin:react/recommended'],
-  parser: '@typescript-eslint/parser',
+  extends: [
+    'airbnb-typescript-prettier',
+    'plugin:import/typescript',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended'
+  ],parser: '@typescript-eslint/parser',
   parserOptions: {
     project: [
       path.join(__dirname, './tsconfig.json'),
