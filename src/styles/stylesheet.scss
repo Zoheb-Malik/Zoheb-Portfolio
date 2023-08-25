@@ -64,9 +64,11 @@ body {
 
       &__header {
         position: sticky;
+        top: 0;
         margin: 0 !important;
         padding: 20px;
         background-color: rgb(46, 45, 47);
+        z-index: 100;
       }
 
       &__section {
