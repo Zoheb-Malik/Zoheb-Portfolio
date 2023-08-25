@@ -7,13 +7,15 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: fit-content;
+  height: 100vh;
   margin: 0;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   text-align: center;
-  overflow: hidden;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 
   &:root, #root {
     h2 {
