@@ -58,7 +58,7 @@ body {
     }
 
     .page {
-      height: calc(80vh - 100px);
+      height: calc(81vh - 100px);
       padding: 28px 0;
       overflow-y: auto;
 
@@ -120,3 +120,8 @@ body {
   }
 }
 
+@supports (-webkit-touch-callout: none) {
+  .page {
+    height: -webkit-fill-available;
+  }
+}
