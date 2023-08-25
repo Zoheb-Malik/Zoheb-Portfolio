@@ -13,7 +13,7 @@ body {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   text-align: center;
-  overflow-y: hidden;
+  overflow: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
@@ -94,7 +94,7 @@ body {
     }
 
     .profile {
-      &-picture {
+      &__picture {
         width: 175px;
         height: 175px;
         border-radius: 50%;
@@ -119,11 +119,5 @@ body {
     }
 
     @import './imports/utilities';
-  }
-}
-
-@supports (-webkit-touch-callout: none) {
-  .page {
-    height: -webkit-fill-available;
   }
 }
