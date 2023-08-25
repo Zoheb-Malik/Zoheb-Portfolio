@@ -92,3 +92,10 @@
     }
   }
 }
+
+.icon {
+  &--small {
+    width: 20px;
+    height: 20px;
+  }
+}
