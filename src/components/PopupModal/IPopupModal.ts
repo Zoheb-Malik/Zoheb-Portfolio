@@ -1,5 +1,5 @@
-  export interface IPopupModal {
-    isOpen: boolean;
-    content: string;
-    onClose: () => void;
-  }
+export interface IPopupModal {
+  isOpen: boolean;
+  onClose: () => void;
+  children: JSX.Element | JSX.Element[];
+}

@@ -5,10 +5,12 @@ import '../../styles/pages/AI.scss';
 
 import PageTemplate from '../../components/PageTemplate/PageTemplate';
 import PageContent from '../../components/PageContent/PageContent';
+import PopupModal from '../../components/PopupModal/PopupModal';
 
 export default function AI() {
-  const openAIKey = '';
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [openAIKey, setOpenAIKey] = useState('');
   const [chatInput, setChatInput] = useState('');
   const [, setChatOutput] = useState('');
   const [error, setError] = useState('');
@@ -46,7 +48,7 @@ export default function AI() {
             { role: 'user', content: chatInput },
             {
               role: 'system',
-              content: 'Do NOT talk like an AI bot. Mimic a genuine friendly OR helpful person.',
+              content: 'Do NOT talk like an AI bot. Mimic a genuine helpful person.',
             },
           ],
           max_tokens: 1096,
@@ -68,14 +70,14 @@ export default function AI() {
               { role: 'ai', content: message || '' },
             ]),
           );
-        } else {
-          setChatOutput('AI could not generate a response.');
         }
       } catch (error) {
-        setError('Rate limit reached. Please try again later.');
+        setError('There has been an error generating a response. Please try again later.');
       } finally {
         setIsThinking(false);
       }
+    } else if (!openAIKey.startsWith('sk-')) {
+      setError('You must enter a valid OpenAI key!');
     }
   };
 
@@ -107,6 +109,24 @@ export default function AI() {
   return (
     <PageTemplate header="AI Chatbot">
       <PageContent title="Chat with AI">
+        <div>
+          <button onClick={() => setIsModalOpen(true)}>Enter API Key</button>
+        </div>
+        <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <div className="modal-content">
+            <h2>Enter Key</h2>
+            <input
+              type="text"
+              value={openAIKey}
+              onChange={(e) => setOpenAIKey(e.target.value)}
+              placeholder="Enter your API key..."
+              disabled={isThinking}
+            />
+            <button onClick={() => setIsModalOpen(false)} disabled={!openAIKey.startsWith('sk-')}>
+              Save
+            </button>
+          </div>
+        </PopupModal>
         <div className="chat-container">
           <div ref={chatContainerRef} className="chat-messages">
             {chatHistory.map((chat, index) => (
@@ -131,9 +151,9 @@ export default function AI() {
               value={chatInput}
               onChange={handleChatInputChange}
               placeholder="Type your message..."
-              disabled={isThinking}
+              disabled={!openAIKey.startsWith('sk-') || isThinking || !!error}
             />
-            <button type="submit" disabled={!openAIKey || !chatInput.trim() || isThinking}>
+            <button type="submit" disabled={!openAIKey || !chatInput.trim() || isThinking || !!error}>
               Send
             </button>
             <button onClick={handleClearHistory} disabled={chatHistory.length < 1}>
