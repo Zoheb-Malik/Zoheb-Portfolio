@@ -32,3 +32,10 @@
     padding: 0 15pc;
   }
 }
+
+@media (min-width: 1920px) { // Desktop
+  .page__section--content {
+    padding: 0 20pc;
+  }
+}
+
