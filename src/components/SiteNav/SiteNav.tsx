@@ -10,6 +10,9 @@ export default function SiteNav() {
         <NavLink to="/about" className="tab" activeClassName="activated">
           About
         </NavLink>
+        <NavLink to="/AI" className="tab" activeClassName="activated">
+          AI
+        </NavLink>
       </div>
     </nav>
   );
