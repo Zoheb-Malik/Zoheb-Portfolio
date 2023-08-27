@@ -30,6 +30,47 @@ body {
     ul {
       all: unset;
     }
+
+    button {
+			margin-left: 10px;
+			padding: 10px 20px;
+			border-radius: 6px;
+			border: none;
+			outline: none;
+			background-color: #007BFF;
+			color: #FFF;
+      outline: 2px solid white;
+			font-size: 14px;
+      user-select: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #006fe6;
+      }
+
+      &:active {
+        background-color: #026ad8;
+      }
+
+			&.clear {
+				background-color: darkred;
+			}
+
+      &:disabled {
+        background-color: #999;
+        outline: 2px solid silver;
+        cursor: not-allowed;
+      }
+		}
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid grey;
+      outline: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
   
     .site-nav {
       position: sticky;
@@ -45,13 +86,16 @@ body {
         color: #FFF;
         padding: 16px;
         font-weight: 500;
+
         &:hover {
           background-color: rgba(0, 0, 0, 0.075);
           cursor: pointer;
         }
+
         &:active {
           background-color: rgba(0, 0, 0, 0.15);
         }
+
         &.activated {
           background-color: grey;
           pointer-events: none;

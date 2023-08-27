@@ -1,5 +1,5 @@
 export default interface IPageContent {
-  title: string;
+  title?: string;
   className?: string;
   removeMarginTop?: boolean;
   children: JSX.Element | JSX.Element[];
