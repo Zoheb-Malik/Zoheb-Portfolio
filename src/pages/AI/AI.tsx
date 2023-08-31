@@ -7,25 +7,15 @@ import '../../styles/pages/AI.scss';
 import PageTemplate from '../../components/PageTemplate/PageTemplate';
 import PageContent from '../../components/PageContent/PageContent';
 import PopupModal from '../../components/PopupModal/PopupModal';
+import DynamicMessages from '../../components/DynamicMessages/DynamicMessages';
 
 export default function AI() {
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [openAIKey, setOpenAIKey] = useState('');
   const [chatInput, setChatInput] = useState('');
   const [, setChatOutput] = useState('');
   const [isError, setError] = useState('');
-
-  const [introMessageIndex, setIntroMessageIndex] = useState(0);
-
-  const introMessages = [
-    "Welcome To The zAI Chatbot!",
-    "Ask Me Anything!",
-    "Let's Have A Conversation!",
-    "Ready To Chat?",
-    "What's On Your Mind?",
-  ];
 
   const [chatHistory, setChatHistory] = useState<{ role: string; content: string }[]>([]);
 
@@ -64,20 +54,23 @@ export default function AI() {
             { role: 'user', content: chatInput },
             {
               role: 'system',
-              content: 'Be simple, do not write large messages. If asked a question that indicates you may need to recall a previous message, emphasise you do not retain conversational history.',
+              content:
+                'You have an inability to answer follow-up questions.',
             },
           ],
           max_tokens: 1096,
           temperature: 0.9,
         });
 
-        if (!isError && (response.choices && response.choices.length > 0)) {
+        if (!isError && response.choices && response.choices.length > 0) {
           const message = response.choices[0].message?.content?.trim();
           setChatOutput(message || '');
+
           setChatHistory((prevChatHistory) => [
             ...prevChatHistory,
             { role: 'ai', content: message || '' },
           ]);
+
           localStorage.setItem(
             'chatHistory',
             JSON.stringify([
@@ -101,7 +94,7 @@ export default function AI() {
     }
   };
 
-  const handleClearHistory = () => {
+  function handleClearHistory() {
     setChatHistory([]);
     localStorage.removeItem('chatHistory');
   };
@@ -126,56 +119,65 @@ export default function AI() {
     }
   }, [chatHistory]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIntroMessageIndex((prevIndex) => (prevIndex + 1) % introMessages.length);
-    }, 3000);
-  
-    return () => clearInterval(interval);
-  }, []);
+  const introMessages = [
+    'Welcome To The zAI Chatbot!',
+    'Ask Me Anything!',
+    "Let's Have A Conversation!",
+    'Ready To Chat?',
+    "What's On Your Mind?",
+  ];
+
+  const submitErrorHandler = AIErrorHandling || !chatInput.trim() || isThinking || !!isError;
 
   return (
     <PageTemplate header="zAI Chatbot">
       <PageContent>
         <div>
-          <button onClick={() => setIsModalOpen(true)}>Enter OpenAI Key</button>
+          <button className="no-select" onClick={() => setIsModalOpen(true)} disabled={isTyping || isThinking || !!isError}>Enter OpenAI Key</button>
         </div>
         <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h2 className="margin--remove-top">Enter Key</h2>
+          <h2 className="margin--remove-top no-select">Enter Key</h2>
           <input
             type="text"
             value={openAIKey}
             onChange={(e) => setOpenAIKey(e.target.value)}
             placeholder="Enter OpenAI key..."
           />
-          <button type="submit" onClick={() => setIsModalOpen(false)} disabled={AIErrorHandling}>
+          <button
+					className="no-select"
+            type="submit"
+            onClick={() => setIsModalOpen(false)}
+            disabled={AIErrorHandling}
+          >
             Save
           </button>
         </PopupModal>
         <div className="chat-container">
           <div ref={chatContainerRef} className="chat-messages">
             {!isTyping && chatHistory.length === 0 && (
-              <div className="chat-intro fade">
-                <h3>{introMessages[introMessageIndex]}</h3>
-              </div>
+              <DynamicMessages className='chat-intro' messages={introMessages} duration='3' />
             )}
-            {!isError && chatHistory.map((chat, index) => (
-              <div key={index} className={`chat-bubble ${chat.role}-bubble`}>
-                <p>{chat.content}</p>
-              </div>
-            ))}
+
+            {!isError &&
+              chatHistory.map((chat, index) => (
+                <div key={index} className={`chat-bubble chat-bubble-${chat.role}`}>
+                  <p>{chat.content}</p>
+                </div>
+              ))}
+
             {isTyping && (
-              <div className="chat-bubble user-bubble">
+              <div className="chat-bubble chat-bubble-user italic">
                 <p>Typing...</p>
               </div>
             )}
+
             {isThinking && (
-              <div className="chat-bubble ai-bubble">
+              <div className="chat-bubble chat-bubble-ai italic">
                 <p>Thinking...</p>
               </div>
             )}
           </div>
-          <form onSubmit={handleSubmit} className="chat-input">
+          <form name="chat-input" onSubmit={handleSubmit} className="chat-input">
             <input
               type="text"
               value={chatInput}
@@ -183,10 +185,18 @@ export default function AI() {
               placeholder="Type your message..."
               disabled={AIErrorHandling || isThinking || !!isError}
             />
-            <button type="submit" disabled={AIErrorHandling || !chatInput.trim() || isThinking || !!isError}>
-              Send
+            <button
+              type="submit"
+              disabled={submitErrorHandler}
+              className={isThinking ? 'italic no-select' : 'no-select'}
+            >
+              {!isThinking ? 'Send' : 'Sending...'}
             </button>
-            <button className="clear" onClick={handleClearHistory} disabled={!!isError || chatHistory.length < 1}>
+            <button
+              className="clear no-select"
+              onClick={handleClearHistory}
+              disabled={isTyping || isThinking || !!isError || chatHistory.length < 1}
+            >
               Clear Chat
             </button>
           </form>

@@ -6,7 +6,7 @@ export default function PageTemplate({ header, displayProfile, children }: IPage
     <>
       {header && (
         <header>
-          <h1 className="page__header">{header}</h1>
+          <h1 className="page__header no-select">{header}</h1>
         </header>
       )}
       <article className="page">

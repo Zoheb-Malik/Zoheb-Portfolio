@@ -31,7 +31,7 @@ export default function PageContent({
     <section className="page__section">
       {/* Find the hidden easter egg! (#1) */}
       <div className="easter-egg--sparkle" onClick={sparkleEasterEgg}>
-        <h2 className={removeMarginTop ? 'margin--remove-top' : ''}>{title}</h2>
+        <h2 className={removeMarginTop ? 'margin--remove-top no-select' : 'no-select'}>{title}</h2>
       </div>
       <section className={`page__section--content ${className}`.trim()}>{children}</section>
     </section>

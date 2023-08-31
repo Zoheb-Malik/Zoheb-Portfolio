@@ -1,6 +1,7 @@
 .margin {
   &--remove {
     margin: 0;
+    
     &-top {
       margin-top: 0;
     }
@@ -27,10 +28,12 @@
       margin-right: 0;
     }
   }
+
   &--add {
     &-top {
       margin-top: 10px;
     }
+
     &-bottom {
       margin-bottom: 10px;
     }
@@ -40,6 +43,7 @@
 .padding {
   &--remove {
     padding: 0;
+
     &-top {
       padding-top: 0;
     }
@@ -86,6 +90,7 @@
       cursor: default;
     }
   }
+
   &-pointer {
     &:hover {
       cursor: pointer;
@@ -98,4 +103,12 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.italic {
+  font-style: italic;
+}
+
+.no-select {
+  user-select: none;
 }
