@@ -30,69 +30,67 @@ export default function AI() {
   };
 
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (openAIKey) {
-      const openai = new OpenAI({
-        apiKey: openAIKey,
-        dangerouslyAllowBrowser: true,
+  if (openAIKey) {
+    const openai = new OpenAI({
+      apiKey: openAIKey,
+      dangerouslyAllowBrowser: true,
+    });
+
+    setChatInput('');
+    setIsTyping(false);
+
+    const updatedChatHistory = [
+      ...chatHistory,
+      { role: 'user', content: chatInput },
+    ];
+
+    setChatHistory(updatedChatHistory);
+
+    try {
+      setIsThinking(true);
+      const messages = updatedChatHistory.map((chat) => ({
+        role: chat.role as "user" | "assistant" | "system" | "function",
+        content: chat.content,
+      }));
+
+      const response = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: messages,
+        max_tokens: 1024,
+        temperature: 0.9,
       });
 
-      setChatInput('');
-      setIsTyping(false);
+      if (!isError && response.choices && response.choices.length > 0) {
+        const message = response.choices[0].message?.content?.trim();
+        setChatOutput(message || '');
 
-      setChatHistory((prevChatHistory) => [
-        ...prevChatHistory,
-        { role: 'user', content: chatInput },
-      ]);
+        const updatedChatHistoryWithSystemMessage = [
+          ...updatedChatHistory,
+          { role: 'system', content: message || '' },
+        ];
 
-      try {
-        setIsThinking(true);
-        const response = await openai.chat.completions.create({
-          model: 'gpt-3.5-turbo',
-          messages: [
-            { role: 'user', content: chatInput },
-            {
-              role: 'system',
-              content:
-                'You have an inability to answer follow-up questions.',
-            },
-          ],
-          max_tokens: 1096,
-          temperature: 0.9,
-        });
+        setChatHistory(updatedChatHistoryWithSystemMessage);
 
-        if (!isError && response.choices && response.choices.length > 0) {
-          const message = response.choices[0].message?.content?.trim();
-          setChatOutput(message || '');
-
-          setChatHistory((prevChatHistory) => [
-            ...prevChatHistory,
-            { role: 'ai', content: message || '' },
-          ]);
-
-          localStorage.setItem(
-            'chatHistory',
-            JSON.stringify([
-              ...chatHistory,
-              { role: 'user', content: chatInput },
-              { role: 'ai', content: message || '' },
-            ]),
-          );
-        }
-      } catch (error: any) {
-        setError(error.message);
-
-        setTimeout(() => {
-          window.location.reload();
-        }, 5000);
-
-        localStorage.removeItem('chatHistory');
-      } finally {
-        setIsThinking(false);
+        localStorage.setItem(
+          'chatHistory',
+          JSON.stringify(updatedChatHistoryWithSystemMessage),
+        );
       }
+    } catch (error: any) {
+      setError(error.message);
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 5000);
+
+      localStorage.removeItem('chatHistory');
+    } finally {
+      setIsThinking(false);
     }
-  };
+  }
+};
 
   function handleClearHistory() {
     setChatHistory([]);
@@ -172,7 +170,7 @@ export default function AI() {
             )}
 
             {isThinking && (
-              <div className="chat-bubble chat-bubble-ai italic">
+              <div className="chat-bubble chat-bubble-system italic">
                 <p>Thinking...</p>
               </div>
             )}
