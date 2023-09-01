@@ -38,6 +38,8 @@ body {
 			font-size: 14px;
       cursor: pointer;
 
+      // Eventually refactor to use shade instead
+
       &:hover {
         background-color: #006fe6;
       }
@@ -47,13 +49,21 @@ body {
       }
 
 			&.clear {
-				background-color: darkred;
+				background-color: #980101;
+
+        &:hover {
+          background-color: #a20000;
+        }
+
+        &:active {
+          background-color: #9d0000;
+        }
 			}
 
       &:disabled {
-        background-color: #999;
-        outline: 2px solid silver;
-        cursor: not-allowed;
+        background-color: #999 !important;
+        outline: 2px solid silver !important;
+        cursor: not-allowed !important;
       }
 		}
 

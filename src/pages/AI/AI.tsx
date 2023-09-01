@@ -30,67 +30,68 @@ export default function AI() {
   };
 
   const handleSubmit = async (event: any) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (openAIKey) {
-    const openai = new OpenAI({
-      apiKey: openAIKey,
-      dangerouslyAllowBrowser: true,
-    });
-
-    setChatInput('');
-    setIsTyping(false);
-
-    const updatedChatHistory = [
-      ...chatHistory,
-      { role: 'user', content: chatInput },
-    ];
-
-    setChatHistory(updatedChatHistory);
-
-    try {
-      setIsThinking(true);
-      const messages = updatedChatHistory.map((chat) => ({
-        role: chat.role as "user" | "assistant" | "system" | "function",
-        content: chat.content,
-      }));
-
-      const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: messages,
-        max_tokens: 1024,
-        temperature: 0.9,
+    if (openAIKey) {
+      const openai = new OpenAI({
+        apiKey: openAIKey,
+        dangerouslyAllowBrowser: true,
       });
 
-      if (!isError && response.choices && response.choices.length > 0) {
-        const message = response.choices[0].message?.content?.trim();
-        setChatOutput(message || '');
+      setChatInput('');
+      setIsTyping(false);
 
-        const updatedChatHistoryWithSystemMessage = [
-          ...updatedChatHistory,
-          { role: 'system', content: message || '' },
-        ];
+      const updatedChatHistory = [
+        ...chatHistory,
+        { role: 'user', content: chatInput },
+      ];
 
-        setChatHistory(updatedChatHistoryWithSystemMessage);
+      setChatHistory(updatedChatHistory);
 
-        localStorage.setItem(
-          'chatHistory',
-          JSON.stringify(updatedChatHistoryWithSystemMessage),
-        );
+      try {
+        setIsThinking(true);
+				
+        const messages = updatedChatHistory.map((chat) => ({
+          role: chat.role as "user" | "assistant" | "system" | "function",
+          content: chat.content,
+        }));
+
+        const response = await openai.chat.completions.create({
+          model: 'gpt-3.5-turbo',
+          messages: messages,
+          max_tokens: 1024,
+          temperature: 0.8,
+        });
+
+        if (!isError && response.choices && response.choices.length > 0) {
+          const message = response.choices[0].message?.content?.trim();
+          setChatOutput(message || '');
+
+          const updatedChatHistoryWithSystemMessage = [
+            ...updatedChatHistory,
+            { role: 'system', content: message || '' },
+          ];
+
+          setChatHistory(updatedChatHistoryWithSystemMessage);
+
+          localStorage.setItem(
+            'chatHistory',
+            JSON.stringify(updatedChatHistoryWithSystemMessage),
+          );
+        }
+      } catch (error: any) {
+        setError(error.message);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
+
+        localStorage.removeItem('chatHistory');
+      } finally {
+        setIsThinking(false);
       }
-    } catch (error: any) {
-      setError(error.message);
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 5000);
-
-      localStorage.removeItem('chatHistory');
-    } finally {
-      setIsThinking(false);
     }
-  }
-};
+  };
 
   function handleClearHistory() {
     setChatHistory([]);
@@ -125,24 +126,43 @@ export default function AI() {
     "What's On Your Mind?",
   ];
 
+  const thinkingMessages = [
+    'Thinking...',
+    'Generating a response...',
+    'Give me a moment...',
+    'Processing...',
+    'Computing...',
+    'Responding...',
+  ];
+
+  useEffect(() => {
+    if (!isThinking) {
+      const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+      chatInput?.focus();
+    }
+  }, [isThinking]);
+
   const submitErrorHandler = AIErrorHandling || !chatInput.trim() || isThinking || !!isError;
 
   return (
     <PageTemplate header="zAI Chatbot">
       <PageContent>
-        <div>
-          <button className="no-select" onClick={() => setIsModalOpen(true)} disabled={isTyping || isThinking || !!isError}>Enter OpenAI Key</button>
-        </div>
+        <p className='margin--remove-top'>
+          Your OpenAI key, conversational history, and overall data is not retained. None of your information is stored.
+        </p>
+        <button className="no-select" onClick={() => setIsModalOpen(true)} disabled={isTyping || isThinking || !!isError}>
+          Enter OpenAI Key
+        </button>
         <PopupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <h2 className="margin--remove-top no-select">Enter Key</h2>
           <input
-            type="text"
+            type="password"
             value={openAIKey}
             onChange={(e) => setOpenAIKey(e.target.value)}
             placeholder="Enter OpenAI key..."
           />
           <button
-					className="no-select"
+            className="no-select"
             type="submit"
             onClick={() => setIsModalOpen(false)}
             disabled={AIErrorHandling}
@@ -171,17 +191,19 @@ export default function AI() {
 
             {isThinking && (
               <div className="chat-bubble chat-bubble-system italic">
-                <p>Thinking...</p>
+                <p>{thinkingMessages[Math.floor(Math.random() * thinkingMessages.length)]}</p>
               </div>
             )}
           </div>
           <form name="chat-input" onSubmit={handleSubmit} className="chat-input">
             <input
               type="text"
+							id="chat-input"
               value={chatInput}
               onChange={handleChatInputChange}
               placeholder="Type your message..."
               disabled={AIErrorHandling || isThinking || !!isError}
+              maxLength={5000}
             />
             <button
               type="submit"
@@ -209,3 +231,4 @@ export default function AI() {
     </PageTemplate>
   );
 }
+
