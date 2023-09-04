@@ -60,3 +60,39 @@
 		margin-top: 20px;
 	}
 }
+
+pre {
+  background-color: #252525;
+  padding: 10px;
+	outline: 2px solid #f7eded;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+code {
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+	&::selection {
+  	background-color: #a9eeff;
+	}
+}
+
+.javascript {
+  color: #268bd2;
+}
+
+.html {
+  color: #d19a66;
+}
+
+.typescript {
+  color: #519aba;
+}
+
+.css {
+  color: #a67dbd;
+}

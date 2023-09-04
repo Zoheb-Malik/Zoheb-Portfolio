@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { OpenAI } from 'openai';
 
 import '../../styles/pages/AI.scss';
-
+	 
 import PageTemplate from '../../components/PageTemplate/PageTemplate';
 import PageContent from '../../components/PageContent/PageContent';
 import PopupModal from '../../components/PopupModal/PopupModal';
@@ -180,13 +180,20 @@ export default function AI() {
               chatHistory.map((chat, index) => (
                 <div key={index} className={`chat-bubble chat-bubble-${chat.role}`}>
                   {chat.role === 'system' ? (
-                    chat.content.includes('\n') ? (
-                      chat.content.split('\n').map((line) => (
-                        <>
-                          {line}
-                          <br />
-                        </>
-                      ))
+                    chat.content.includes('```') ? (
+                      chat.content.split('```').map((response, index) => {
+                        if (index % 2 === 0) {
+                          return <p>{response}</p>;
+                        } else {
+                          const [language, ...codeLines] = response.split('\n');
+                          const code = codeLines.join('\n');
+                          return (
+                            <pre>
+                              <code className={language.trim()}>{code.trim()}</code>
+                            </pre>
+                          );
+                        }
+                      })
                     ) : (
                       <p>{chat.content}</p>
                     )
