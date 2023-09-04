@@ -179,10 +179,24 @@ export default function AI() {
             {!isError &&
               chatHistory.map((chat, index) => (
                 <div key={index} className={`chat-bubble chat-bubble-${chat.role}`}>
-                  <p>{chat.content}</p>
+                  {chat.role === 'system' ? (
+                    chat.content.includes('\n') ? (
+                      chat.content.split('\n').map((line) => (
+                        <>
+                          {line}
+                          <br />
+                        </>
+                      ))
+                    ) : (
+                      <p>{chat.content}</p>
+                    )
+                  ) : (
+                    <p>{chat.content}</p>
+                  )}
                 </div>
-              ))}
-
+              ))
+            }
+              
             {isTyping && (
               <div className="chat-bubble chat-bubble-user italic">
                 <p>Typing...</p>
